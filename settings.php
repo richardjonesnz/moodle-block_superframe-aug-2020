@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * superframe view page
+ * superframe admin settings page
  *
  * @package    block_superframe
  * @copyright  Daniel Neis <danielneis@gmail.com>
