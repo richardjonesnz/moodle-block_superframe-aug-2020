@@ -82,6 +82,7 @@ class block_superframe extends block_base {
         // Add the blockid to the Moodle URL for the view page.
         $blockid = $this->instance->id;
         $courseid = $this->page->course->id;
+
         $context = context_block::instance($blockid);
 
         // Check the capability.
