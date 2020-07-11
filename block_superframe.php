@@ -30,7 +30,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
+require_once("$CFG->libdir/formslib.php");
 /*
 
 Notice some rules that will keep plugin approvers happy when you want
@@ -61,7 +61,7 @@ class block_superframe extends block_base {
      * Add some text content to our block.
      */
     public function get_content() {
-        global $USER, $CFG;
+        global $USER, $CFG, $OUTPUT;
 
         // Do we have any content?
         if ($this->content !== null) {
@@ -78,8 +78,19 @@ class block_superframe extends block_base {
         $this->content->footer = '';
         $this->content->text = get_string('welcomeuser', 'block_superframe',
                 $USER);
-        $this->content->text .= '<br><a href="' . $CFG->wwwroot . '/blocks/superframe/view.php">' .
-                get_string('viewlink', 'block_superframe') . '</a>';
+
+        // Add the blockid to the Moodle URL for the view page.
+        $blockid = $this->instance->id;
+        $context = context_block::instance($blockid);
+
+        // Check the capability.
+        if (has_capability('block/superframe:seeviewpage', $context)) {
+
+            $url = new moodle_url('/blocks/superframe/view.php',
+                    ['blockid' => $blockid]);
+            $this->content->text .= '<p>' . html_writer::link($url,
+                    get_string('viewlink', 'block_superframe')) . '</p>';
+        }
 
         return $this->content;
     }
