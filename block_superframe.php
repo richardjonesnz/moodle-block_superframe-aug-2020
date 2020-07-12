@@ -128,14 +128,15 @@ class block_superframe extends block_base {
     private static function get_course_users($courseid) {
         global $DB;
 
-        $sql = "SELECT DISTINCT en.id, en.enrolid, en.userid, e.courseid, u.firstname, c.shortname
-                FROM mdl_user_enrolments as en
-                JOIN mdl_enrol as e ON e.id = en.enrolid
-                JOIN mdl_user as u ON en.userid = u.id
-                JOIN mdl_course AS c ON e.courseid = c.id
-                WHERE c.id = :courseid";
+        $sql = "SELECT u.id, u.firstname
+                FROM {course} as c
+                JOIN {context} as x ON c.id = x.instanceid
+                JOIN {role_assignments} as r ON r.contextid = x.id
+                JOIN {user} AS u ON u.id = r.userid
+               WHERE c.id = :courseid
+                 AND r.roleid = :roleid";
 
-        $records = $DB->get_records_sql($sql, ['courseid' => $courseid]);
+        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
 
         return $records;
     }
