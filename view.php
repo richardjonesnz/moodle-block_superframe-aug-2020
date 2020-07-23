@@ -74,18 +74,5 @@ switch ($config->size) {
         break;
 }
 
-// Start output to browser.
-echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('pluginname', 'block_superframe'), 5);
-// Dummy content.
-echo '<br>' . fullname($USER) . '<br>';
-
-// Build and display an iframe.
-$attributes = ['src' => $url,
-               'width' => $width,
-               'height' => $height];
-echo html_writer::start_tag('iframe', $attributes);
-echo html_writer::end_tag('iframe');
-
-//send footer out to browser
-echo $OUTPUT->footer();
+$renderer = $PAGE->get_renderer('block_superframe');
+$renderer->display_view_page($url, $width, $height);

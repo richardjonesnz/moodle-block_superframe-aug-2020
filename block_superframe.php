@@ -136,6 +136,8 @@ class block_superframe extends block_base {
                WHERE c.id = :courseid
                  AND r.roleid = :roleid";
 
+        // In real world query should check users are not deleted/suspended.
+
         $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
 
         return $records;
