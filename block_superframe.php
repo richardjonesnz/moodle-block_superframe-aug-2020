@@ -85,20 +85,15 @@ class block_superframe extends block_base {
 
         $context = context_block::instance($blockid);
 
+        // Get the user list detail.
+        if (has_capability('block/superframe:seeuserlist', $context)) {
+            $students = self::get_course_users($courseid);
+        }
         // Check the capability.
         if (has_capability('block/superframe:seeviewpage', $context)) {
 
             $renderer = $this->page->get_renderer('block_superframe');
-            $this->content->text = $renderer->fetch_block_content($blockid);
-        }
-        /*
-         * Exercise optional: Add this section via the renderer and template as well.
-         */
-        if (has_capability('block/superframe:seeuserlist', $context)) {
-            $users = self::get_course_users($courseid);
-            foreach ($users as $user) {
-                $this->content->text .='<li>' . $user->firstname . '</li>';
-            }
+            $this->content->text = $renderer->fetch_block_content($blockid, $students);
         }
 
         return $this->content;
