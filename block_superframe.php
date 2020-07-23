@@ -88,15 +88,17 @@ class block_superframe extends block_base {
         // Check the capability.
         if (has_capability('block/superframe:seeviewpage', $context)) {
 
-            $url = new moodle_url('/blocks/superframe/view.php',
-                    ['blockid' => $blockid]);
-            $this->content->text .= '<p>' . html_writer::link($url,
-                    get_string('viewlink', 'block_superframe')) . '</p>';
+            $renderer = $this->page->get_renderer('block_superframe');
+            $this->content->text = $renderer->fetch_block_content($blockid);
         }
-
-        $users = self::get_course_users($courseid);
-        foreach ($users as $user) {
-            $this->content->text .='<li>' . $user->firstname . '</li>';
+        /*
+         * Exercise optional: Add this section via the renderer and template as well.
+         */
+        if (has_capability('block/superframe:seeuserlist', $context)) {
+            $users = self::get_course_users($courseid);
+            foreach ($users as $user) {
+                $this->content->text .='<li>' . $user->firstname . '</li>';
+            }
         }
 
         return $this->content;
