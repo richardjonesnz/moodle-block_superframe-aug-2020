@@ -47,19 +47,23 @@ class block_superframe_renderer extends plugin_renderer_base {
     }
 
     function fetch_block_content($blockid, $students) {
-        global $USER;
+        global $USER, $DB;
 
         $data = new stdClass();
 
-        $data->studentlist = array();
-
-        foreach ($students as $student) { $studentlist[] = $student->firstname; }
+        foreach ($students as $student) {
+            $studentlist = array();
+            $studentlist['name'] = $student->firstname;
+            $rs = $DB->get_record_select("user", "id = '$student->id'", null, user_picture::fields());
+            //var_dump($rs);exit;
+            $studentlist['pic'] = $this->output->user_picture($rs);
+            $data->students[] = $studentlist;
+        }
 
         $username = fullname($USER);
         $data->welcome = get_string('welcomeuser', 'block_superframe', $USER);
         $data->url = new moodle_url('/blocks/superframe/view.php', ['blockid' => $blockid]);
         $data->linktext = get_string('viewlink', 'block_superframe');
-        $data->students = $studentlist;
 
         return $this->render_from_template('block_superframe/block', $data);
     }

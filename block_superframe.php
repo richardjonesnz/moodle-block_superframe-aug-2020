@@ -125,7 +125,7 @@ class block_superframe extends block_base {
     private static function get_course_users($courseid) {
         global $DB;
 
-        $sql = "SELECT u.id, u.firstname
+        $sql = "SELECT u.id, u.firstname, u.lastname
                 FROM {course} as c
                 JOIN {context} as x ON c.id = x.instanceid
                 JOIN {role_assignments} as r ON r.contextid = x.id
