@@ -34,6 +34,7 @@ $string['pluginname'] = 'Super frame';
 $string['welcomeuser'] = 'Welcome {$a->firstname} {$a->lastname}';
 $string['viewlink'] = 'View page';
 $string['poptext'] = 'List blocks';
+$string['tabletext'] = 'List courses';
 
 // Admin settings file.
 $string['headerconfig'] = 'Super frame settings';
