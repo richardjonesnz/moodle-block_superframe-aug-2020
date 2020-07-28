@@ -33,6 +33,7 @@
 $string['pluginname'] = 'Super frame';
 $string['welcomeuser'] = 'Welcome {$a->firstname} {$a->lastname}';
 $string['viewlink'] = 'View page';
+$string['poptext'] = 'List blocks';
 
 // Admin settings file.
 $string['headerconfig'] = 'Super frame settings';
@@ -62,3 +63,10 @@ $string['large'] = 'Large';
 // Modest statement.
 $string['message'] = 'I am a great developer';
 $string['picture'] = 'Show picture';
+
+// Block data table
+$string['blockid'] = 'Block id';
+$string['blockname'] = 'Block name';
+$string['course'] = 'Block course';
+$string['catname'] = 'Course category';
+$string['tablecaption'] = 'Block data';

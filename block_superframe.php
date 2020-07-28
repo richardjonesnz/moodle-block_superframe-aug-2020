@@ -91,15 +91,6 @@ class block_superframe extends block_base {
             $renderer = $this->page->get_renderer('block_superframe');
             $this->content->text = $renderer->fetch_block_content($blockid);
         }
-        /*
-         * Exercise optional: Add this section via the renderer and template as well.
-         */
-        if (has_capability('block/superframe:seeuserlist', $context)) {
-            $users = self::get_course_users($courseid);
-            foreach ($users as $user) {
-                $this->content->text .='<li>' . $user->firstname . '</li>';
-            }
-        }
 
         return $this->content;
     }
@@ -125,23 +116,5 @@ class block_superframe extends block_base {
      */
     function has_config() {
         return true;
-    }
-
-    private static function get_course_users($courseid) {
-        global $DB;
-
-        $sql = "SELECT u.id, u.firstname
-                FROM {course} as c
-                JOIN {context} as x ON c.id = x.instanceid
-                JOIN {role_assignments} as r ON r.contextid = x.id
-                JOIN {user} AS u ON u.id = r.userid
-               WHERE c.id = :courseid
-                 AND r.roleid = :roleid";
-
-        // In real world query should check users are not deleted/suspended.
-
-        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
-
-        return $records;
     }
 }
