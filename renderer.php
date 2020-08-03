@@ -56,7 +56,6 @@ class block_superframe_renderer extends plugin_renderer_base {
             $studentlist['name'] = $student->firstname;
             $rs = $DB->get_record_select("user", "id = '$student->id'", null, user_picture::fields());
             $studentlist['pic'] = $this->output->user_picture($rs);
-            echo $studentlist['pic']; exit;
             $data->students[] = $studentlist;
         }
 
