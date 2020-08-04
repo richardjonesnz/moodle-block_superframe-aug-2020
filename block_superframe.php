@@ -89,7 +89,8 @@ class block_superframe extends block_base {
         if (has_capability('block/superframe:seeviewpage', $context)) {
 
             $renderer = $this->page->get_renderer('block_superframe');
-            $this->content->text = $renderer->fetch_block_content($blockid);
+            $this->content->text = $renderer->fetch_block_content(
+                    $blockid, $courseid);
         }
 
         return $this->content;

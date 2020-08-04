@@ -35,6 +35,7 @@ $string['welcomeuser'] = 'Welcome {$a->firstname} {$a->lastname}';
 $string['viewlink'] = 'View page';
 $string['poptext'] = 'List blocks';
 $string['tabletext'] = 'Table Manager';
+$string['returncourse'] = 'Return to course';
 
 // Admin settings file.
 $string['headerconfig'] = 'Super frame settings';
@@ -65,9 +66,16 @@ $string['large'] = 'Large';
 $string['message'] = 'I am a great developer';
 $string['picture'] = 'Show picture';
 
-// Block data table
+// Block data table.
 $string['blockid'] = 'Block id';
 $string['blockname'] = 'Block name';
 $string['course'] = 'Block course';
 $string['catname'] = 'Course category';
 $string['tablecaption'] = 'Block data';
+
+// Sizes for the frame.
+$string['size'] = 'Select a size for your iframe';
+$string['custom'] = 'custom';
+$string['small'] = 'small';
+$string['medium'] = 'medium';
+$string['large'] = 'large';
