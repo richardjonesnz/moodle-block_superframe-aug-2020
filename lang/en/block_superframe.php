@@ -85,3 +85,6 @@ $string['userlink'] = 'Installed blocks';
 
 // AMD JS Modal.
 $string['about'] = 'About Super frame.';
+
+// Events.
+$string['pageviewed'] = 'View page viewed';
