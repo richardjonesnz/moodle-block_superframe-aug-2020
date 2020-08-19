@@ -36,6 +36,7 @@ $string['viewlink'] = 'View page';
 $string['poptext'] = 'List blocks';
 $string['tabletext'] = 'Table Manager';
 $string['returncourse'] = 'Return to course';
+$string['lastaccess'] = 'Last access: ';
 
 // Admin settings file.
 $string['headerconfig'] = 'Super frame settings';
