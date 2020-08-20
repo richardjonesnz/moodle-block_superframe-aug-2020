@@ -54,17 +54,22 @@ class block implements renderable, templatable {
     public function export_for_template(renderer_base $output) {
         global $USER, $DB;
 
+        // Get some useful data items.
         $courseid = $this->page->courseid;
         $userid = $USER->id;
+        $name = $USER->firstname . ' ' . $USER->lastname;
 
+        // The data structure to hold the content for the block.
         $data = new stdClass();
 
-        $name = $USER->firstname . ' ' . $USER->lastname;
+        // Our JS testing code is required.
         $this->page->requires->js_call_amd('block_superframe/test_amd', 'init', ['name' => $name]);
 
+        // A greeting and a css class (normally to be avoided - prefer Bootstrap).
         $data->headingclass = 'block_superframe_heading';
         $data->welcome = get_string('welcomeuser', 'block_superframe', $name);
 
+        // Link to the block view page.
         $data->url = new moodle_url('/blocks/superframe/view.php',
                 ['blockid' => $this->blockid, 'courseid' => $courseid]);
         $data->linktext = get_string('viewlink', 'block_superframe');
@@ -75,6 +80,7 @@ class block implements renderable, templatable {
         $data->tableurl = new moodle_url('/blocks/superframe/tablemanager.php');
         $data->tabletext = get_string('tabletext', 'block_superframe');
 
+        // Get the user's last access time for the course the block is in.
         $data->access = $DB->get_field('user_lastaccess', 'timeaccess',
                 ['courseid' => $courseid, 'userid' => $userid], MUST_EXIST);
 
