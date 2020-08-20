@@ -31,7 +31,12 @@ $PAGE->set_course($COURSE);
 $PAGE->set_heading($SITE->fullname);
 $PAGE->set_pagelayout('popup');
 $PAGE->set_title(get_string('pluginname', 'block_superframe'));
-// Let's get some data about blocks.
-$records = block_data::fetch_block_data();
+
+
 $renderer = $PAGE->get_renderer('block_superframe');
-echo $renderer->display_block_table($records);
+$renderable = new block_superframe\output\block_data();
+
+// Start output to browser.
+echo $OUTPUT->header();
+echo $renderer->render($renderable);
+echo $OUTPUT->footer();

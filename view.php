@@ -45,6 +45,7 @@ $event->trigger();
 $context = context_block::instance($blockid);
 require_capability('block/superframe:seeviewpage', $context);
 
+
 // Get the instance configuration data from the database.
 // It's stored as a base 64 encoded serialized string.
 $configdata = $DB->get_field('block_instances', 'configdata', ['id' => $blockid]);
@@ -87,5 +88,11 @@ switch ($size) {
         break;
 }
 
+// Render our content
+$renderable = new block_superframe\output\view($url, $width, $height, $courseid, $blockid);
 $renderer = $PAGE->get_renderer('block_superframe');
-$renderer->display_view_page($url, $width, $height, $courseid, $blockid);
+
+// Start output to browser.
+echo $OUTPUT->header();
+echo $renderer->render($renderable);
+echo $OUTPUT->footer();
