@@ -25,26 +25,38 @@
 namespace block_superframe\output;
 use plugin_renderer_base;
 
-
+/**
+ * block_superframe renderer
+ */
 class renderer extends plugin_renderer_base {
 
     /**
      * Return the main content for the superframe block.
      *
-     * @param main $main The main renderable
+     * @param block $block the renderable for the block content.
      * @return string HTML string
      */
-    public function render_block_content($block) {
+    public function render_block($block) {
         return $this->render_from_template('block_superframe/block',
                 $block->export_for_template($this));
     }
-
-     public function render_view_page($view) {
+    /**
+     * Return the main content for the superframe view page.
+     *
+     * @param view $view the renderable for the view page content.
+     * @return string HTML string
+     */
+     public function render_view($view) {
         return $this->render_from_template('block_superframe/view',
                 $view->export_for_template($this));
     }
-
-    public function render_block_table($block_data) {
+    /**
+     * Return the main content for the blocks list page.
+     *
+     * @param block_data $block_data the renderable for the blocks list content.
+     * @return string HTML string
+     */
+    public function render_block_data($block_data) {
         return $this->render_from_template('block_superframe/block_data',
                 $block_data->export_for_template($this));
     }

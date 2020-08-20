@@ -28,13 +28,14 @@ use templatable;
 use stdClass;
 use moodle_url;
 
+/**
+ * Class containing data for the superiframe block content.
+ *
+ * @package    block_superframe
+ * @copyright  202 Richard Jones <richardnz@outloook.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block implements renderable, templatable {
-    /**
-     * Export this data so it can be used as the context for a mustache template.
-     *
-     * @param renderer_base $output
-     * @return \stdClass|array
-     */
 
     protected $blockid;
 
@@ -44,19 +45,28 @@ class block implements renderable, templatable {
 
     }
 
+/**
+ * Export the block content so it can be used as the context for a mustache template.
+ *
+ * @param renderer_base $output
+ * @return return stdClass|array
+ */
     public function export_for_template(renderer_base $output) {
-        global $USER, $DB, $PAGE;
+        global $USER, $DB;
+
+        $courseid = $this->page->courseid;
+        $userid = $USER->id;
 
         $data = new stdClass();
 
         $name = $USER->firstname . ' ' . $USER->lastname;
-        $PAGE->requires->js_call_amd('block_superframe/test_amd', 'init', ['name' => $name]);
+        $this->page->requires->js_call_amd('block_superframe/test_amd', 'init', ['name' => $name]);
 
         $data->headingclass = 'block_superframe_heading';
         $data->welcome = get_string('welcomeuser', 'block_superframe', $name);
 
         $data->url = new moodle_url('/blocks/superframe/view.php',
-                ['blockid' => $this->blockid, 'courseid' => $PAGE->course->id]);
+                ['blockid' => $this->blockid, 'courseid' => $courseid]);
         $data->linktext = get_string('viewlink', 'block_superframe');
 
         // Add a link to the popup page and to the tablemanager page:
@@ -66,10 +76,8 @@ class block implements renderable, templatable {
         $data->tabletext = get_string('tabletext', 'block_superframe');
 
         $data->access = $DB->get_field('user_lastaccess', 'timeaccess',
-                ['courseid' => $PAGE->course->id, 'userid' => $USER->id], MUST_EXIST);
-
+                ['courseid' => $courseid, 'userid' => $userid], MUST_EXIST);
 
         return $data;
     }
-
 }
