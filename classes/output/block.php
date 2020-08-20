@@ -52,10 +52,10 @@ class block implements renderable, templatable {
  * @return return stdClass|array
  */
     public function export_for_template(renderer_base $output) {
-        global $USER, $DB;
+        global $USER, $DB, $PAGE;
 
         // Get some useful data items.
-        $courseid = $this->page->courseid;
+        $courseid = $PAGE->course->id;
         $userid = $USER->id;
         $name = $USER->firstname . ' ' . $USER->lastname;
 
@@ -63,7 +63,7 @@ class block implements renderable, templatable {
         $data = new stdClass();
 
         // Our JS testing code is required.
-        $this->page->requires->js_call_amd('block_superframe/test_amd', 'init', ['name' => $name]);
+        $PAGE->requires->js_call_amd('block_superframe/test_amd', 'init', ['name' => $name]);
 
         // A greeting and a css class (normally to be avoided - prefer Bootstrap).
         $data->headingclass = 'block_superframe_heading';
