@@ -36,7 +36,7 @@ class renderer extends plugin_renderer_base {
      * @param block $block the renderable for the block content.
      * @return string HTML string
      */
-    public function render_block($block) {
+    public function render_block(block $block) {
         return $this->render_from_template('block_superframe/block',
                 $block->export_for_template($this));
     }
@@ -46,7 +46,7 @@ class renderer extends plugin_renderer_base {
      * @param view $view the renderable for the view page content.
      * @return string HTML string
      */
-     public function render_view($view) {
+     public function render_view(view $view) {
         return $this->render_from_template('block_superframe/view',
                 $view->export_for_template($this));
     }
@@ -56,7 +56,7 @@ class renderer extends plugin_renderer_base {
      * @param block_data $block_data the renderable for the blocks list content.
      * @return string HTML string
      */
-    public function render_block_data($block_data) {
+    public function render_block_data(block_data $block_data) {
         return $this->render_from_template('block_superframe/block_data',
                 $block_data->export_for_template($this));
     }

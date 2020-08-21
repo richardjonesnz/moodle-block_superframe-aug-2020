@@ -32,11 +32,8 @@ $PAGE->set_heading($SITE->fullname);
 $PAGE->set_pagelayout('popup');
 $PAGE->set_title(get_string('pluginname', 'block_superframe'));
 
-
-$renderer = $PAGE->get_renderer('block_superframe');
-$renderable = new block_superframe\output\block_data();
-
 // Start output to browser.
 echo $OUTPUT->header();
-echo $renderer->render($renderable);
+$renderer = $PAGE->get_renderer('block_superframe');
+echo $renderer->render(new block_superframe\output\block_data());
 echo $OUTPUT->footer();

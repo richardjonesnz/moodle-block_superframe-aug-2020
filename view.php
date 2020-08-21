@@ -21,6 +21,8 @@
  * Modified for use in MoodleBites for Developers Level 1 by Richard Jones & Justin Hunt
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+use block_superframe\output\view;
+
 require('../../config.php');
 global $USER;
 $blockid = required_param('blockid', PARAM_INT);
@@ -88,11 +90,9 @@ switch ($size) {
         break;
 }
 
-// Render our content
-$renderable = new block_superframe\output\view($url, $width, $height, $courseid, $blockid);
-$renderer = $PAGE->get_renderer('block_superframe');
 
 // Start output to browser.
 echo $OUTPUT->header();
-echo $renderer->render($renderable);
+$renderer = $PAGE->get_renderer('block_superframe');
+echo $renderer->render(new view($url, $width, $height, $courseid, $blockid));
 echo $OUTPUT->footer();
