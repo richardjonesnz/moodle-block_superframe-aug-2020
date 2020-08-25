@@ -93,6 +93,5 @@ switch ($size) {
 
 // Start output to browser.
 echo $OUTPUT->header();
-$renderer = $PAGE->get_renderer('block_superframe');
-echo $renderer->render(new view($url, $width, $height, $courseid, $blockid));
+echo $OUTPUT->render(new view($url, $width, $height, $courseid, $blockid));
 echo $OUTPUT->footer();

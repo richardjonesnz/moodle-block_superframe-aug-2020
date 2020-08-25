@@ -75,10 +75,9 @@ class block_superframe extends block_base {
 
         // OK let's add some content.
         $renderable = new block_superframe\output\block($this->instance->id);
-        $renderer = $this->page->get_renderer('block_superframe');
 
         $this->content = new stdClass();
-        $this->content->text = $renderer->render($renderable);
+        $this->content->text = $OUTPUT->render($renderable);
         $this->content->footer = '';
 
         return $this->content;

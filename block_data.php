@@ -34,6 +34,5 @@ $PAGE->set_title(get_string('pluginname', 'block_superframe'));
 
 // Start output to browser.
 echo $OUTPUT->header();
-$renderer = $PAGE->get_renderer('block_superframe');
-echo $renderer->render(new block_superframe\output\block_data());
+echo $OUTPUT->render(new block_superframe\output\block_data());
 echo $OUTPUT->footer();

@@ -123,7 +123,6 @@ $coursecontext = context_course::instance($course->id);
 $PAGE->set_url('/blocks/superframe/tablemanager.php', array());
 $PAGE->set_context($coursecontext);
 $PAGE->set_pagelayout('course');
-$renderer = $PAGE->get_renderer('block_superframe');
 
 //=========================================
 // Form processing begins here
@@ -147,7 +146,7 @@ if ($data = $mform->get_data()) {
 //=========================================
 // Page output begins here
 //=========================================
-echo $renderer->header();
+echo $OUTPUT->header();
 
 // If the action is specified as "edit" then we show the edit form
 if ($action == "edit"){
@@ -163,7 +162,7 @@ if ($action == "edit"){
     $mform->set_data($data);
     // Header for the page.
 
-    echo $renderer->heading($pagetitle  . $tablename,2);
+    echo $OUTPUT->heading($pagetitle  . $tablename,2);
 
     // Output page and form.
     $mform->display();
@@ -173,7 +172,7 @@ if ($action == "edit"){
 // List of items here begins here.
 //================================
 
-echo $renderer->heading($pagetitle  . $tablename, 2);
+echo $OUTPUT->heading($pagetitle  . $tablename, 2);
 
 // Just take some relevant fields, if we are in edit mode, just get one matching record.
 if ($action == "edit") {
@@ -186,6 +185,6 @@ else  // Get all the records in the table.
 
 // Call the function at the top of the page to display an html table.
 echo block_superframe_display_in_table($alldata);
-echo $renderer->footer();
+echo $OUTPUT->footer();
 
 return;

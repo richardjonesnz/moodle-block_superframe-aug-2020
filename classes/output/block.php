@@ -32,7 +32,7 @@ use moodle_url;
  * Class containing data for the superiframe block content.
  *
  * @package    block_superframe
- * @copyright  202 Richard Jones <richardnz@outloook.com>
+ * @copyright  2020 Richard Jones <richardnz@outloook.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class block implements renderable, templatable {
